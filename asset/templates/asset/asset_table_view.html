@@ -1,0 +1,128 @@
+{% extends 'asset/base.html'%}
+{% load tag_helpers%}
+
+
+{% block content%}
+
+<div class="container d-flex justify-content-center">
+    <div class="center card col-9 my-5">
+    <div class="row">
+        <div class="container">
+            <form action="" method="GET">
+                entities:
+                <select name="paginate_by" id="pagination">
+                    {% for choice in view.pagination_choice %}
+                    <option value="{{choice}}" >{{choice}}</option>
+                    {% endfor %}
+
+                </select>
+            </form>
+        </div>
+        <div class="container"></div>
+    </div>
+    <div class="row">
+
+        <table class="table table-striped">
+            
+            <thead>
+                <th>Asset Name</th>
+                <th>Description</th>
+                <th>Total Count</th>
+                <th>Available Count</th>
+                <th>Create Date</th>
+                <th>Updated Date</th>
+                <th>Actions</th>
+
+            </thead>
+            <tbody>
+               {% for asset in asset_obj%}
+               <tr>
+                <td>{{asset.title}}</td>
+                <td>{{asset.description}}</td>
+                <td>{{asset.total_count}}</td>
+                <td>{{asset.available_count}}</td>
+                <td>{{asset.create_at}}</td>
+                <td>{{asset.update_at}}</td>
+                <td>
+                    <a class="btn btn-sm btn-success" href=""><i class="fa fa-pen"></i></a>
+                    <a class="btn btn-sm btn-danger" href=""><i class="fa fa-trash"></i></a>
+                </td>
+               </tr>
+               
+               {% endfor %}
+            </tbody>
+
+
+        </table>
+        <div class=" container">
+            <div class="row ">
+                <div class="col-6 page-link">
+
+                    <span >showing {{page_obj.start_index}} to {{page_obj.end_index}}  of {{paginator.count}}</span>
+                
+
+
+                </div>
+                <div class="col-6">
+                    <div class="pagination d-flex justify-content-end ">
+                    
+                     
+                        {% if page_obj.has_previous%}
+                        <li class="page-item"><a class="page-link" href="?page={{page_obj.previous_page_number}}">&laquo;</a></li>
+                        {% else %} 
+                        <li class="page-item disabled"><a class="page-link" href="">&laquo;</a></li>
+                        
+                        {% endif%} 
+                        {% elided_pagination_page paginator page_obj.number 1 1 as page_range %}
+                        {% for i in page_range %}
+                        {% if page_obj.number == i %}
+
+                        <li class="  page-item active "><a class=" page-link" href="?page={{i}}">{{i}}</a></li>
+                        {% else %}
+                        {% if i == paginator.ELLIPSIS%}
+                        <li class="page-item"><span class="page-link">{{paginator.ELLIPSIS}}</span></li>
+                        {% else %}
+
+                        <li class="  page-item "><a class=" page-link" href="?page={{i}}">{{i}}</a></li>
+                        {% endif %}
+                        
+                        {% endif %}
+                        
+                        
+                       
+                        
+                        
+                        {% endfor %}
+                        
+            
+                        {% if page_obj.has_next%}
+                        <li class="page-item"><a class="page-link" href="?page={{page_obj.next_page_number}}">&raquo;</a></li>
+                        {% else %}
+                        <li class="page-item disabled "><a class="page-link" href="">&raquo;</a></li>
+                        {% endif %}
+    
+                    </div>
+
+                </div>
+            </div>
+            
+           
+        </div>
+
+        
+    </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function(){
+     $("#pagination").on('change',function(){
+        page_by=$(this).val()
+        axios.get("{% url 'asset-view'%}",{params:{"data":page_by}})
+        
+
+     })
+
+    })
+</script>
+
+{% endblock content%}

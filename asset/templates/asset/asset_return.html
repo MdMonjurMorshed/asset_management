@@ -1,0 +1,71 @@
+{% extends 'asset/base.html' %}
+
+{% block title%} Asset Return {% endblock title%}
+
+
+{% block content%}
+<div class="container d-flex justify-content-center">
+
+    <div class="center card col-6 my-5">
+        <form class="p-3" method="POST">
+
+            {% csrf_token%}
+           
+            {% for fields in form %}
+            <div class="form-group">
+                {{fields.label_tag}}
+                {{fields}} 
+
+            </div>
+                      
+            {% endfor %}
+           
+            
+            
+      
+        <div class="row ">
+            <div class="col-2 "> <button class="  btn  btn-success" type="submit">Save</button></div>
+            <div class="col-2 ml-3"><a class="btn btn-primary" href="{% url 'home'%}">Back</a></div>
+        </div>
+         
+        </form>
+
+       
+    </div>
+</div>
+
+<script>
+    $(document).ready(function(){
+
+      
+      $("#id_employee").on('change',function(){
+           var emp_id=$(this).val()
+           var csrf=$("input[name='csrfmiddlewaretoken']").val()
+           console.log(csrf)
+           console.log(emp_id)
+           var data={
+            'emp':emp_id
+           }
+
+           
+           $("#id_asset").html('')
+        
+           axios.get("{% url 'filter-data'%}",{params:data}).then(function(response){
+           var filter=response.data
+           console.log(filter)
+           filter.forEach(function(item){
+            $("#id_asset").append(`<option value="${item.id}">${item.title}</option>`)
+           })
+      
+
+           }).catch(function(e){
+            console.log(e)
+           })
+
+        })
+       
+
+
+    })
+</script>
+{% endblock content%}

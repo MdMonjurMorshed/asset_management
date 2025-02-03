@@ -1,0 +1,22 @@
+{% extends 'asset/base.html'%}
+
+{% block content%}
+
+<div class="container d-flex justify-content-center">
+
+    <div class="center card col-6 my-5">
+        <form class="p-3" method="POST">
+
+            {% csrf_token %}
+
+            {{form.as_p}}
+    
+         <button role="button" class="btn form-control btn-success">change password</button>
+         
+        </form>
+
+       
+    </div>
+</div>
+
+{% endblock%}

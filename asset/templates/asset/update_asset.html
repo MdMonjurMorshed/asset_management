@@ -1,0 +1,24 @@
+{% extends 'asset/base.html' %}
+
+{% block title%} Asset Update {% endblock title%}
+
+
+{% block content%}
+<div class="container d-flex justify-content-center">
+
+    <div class="center card col-6 my-5">
+        <form class="p-3" method="POST">
+
+            {% csrf_token%}
+            {{form.as_p}}
+        <div class="row ">
+            <div class="col-2 "> <button class="  btn  btn-success" type="submit">Update Asset</button></div>
+            <div class="col-2 ml-5"><a class="btn btn-primary" href="{% url 'home'%}">Back</a></div>
+        </div>
+         
+        </form>
+
+       
+    </div>
+</div>
+{% endblock content%}

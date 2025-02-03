@@ -1,0 +1,284 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> {% block title%}Document{% endblock%}</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js" integrity="sha512-uMtXmF28A2Ab/JJO2t/vYhlaa/3ahUOgj1Zf27M5rOo8/+fcTUVH0/E0ll68njmjrLqOBjXM3V9NiPFL5ywWPQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    {% include  'asset/style.html'%}
+</head>
+<body > 
+
+ 
+
+
+
+ 
+    {% if user.is_authenticated %}
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
+            
+          
+      <div class="container">
+        {%if user.is_staff%} 
+        <a class="navbar-brand" href="#">Navbar</a>
+        {% else %}
+        <a class="navbar-brand " data-toggle="collapse" aria-expanded="false" data-target="#sidebarContent"    href="#"><img src="/media/{{user.logo}}" height="50px" width="50px" alt="Company logo" class="rounded-circle"></a>
+        {% endif %}
+       
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        
+  
+        <div class="collapse navbar-collapse " id="navbarSupportedContent">
+          
+              <div class="container  d-flex justify-content-start">
+                <div class="container navbar-nav d-flex  ">
+                 
+                
+                  
+                  {% if user.is_staff%}
+                  <li class="nav-item  p-2 col-2"><a class="nav-link" href="">i am admin</a></li>
+                  {% else %}
+  
+                  
+                 
+                   {% include 'asset/customer_nav.html'%}
+                  {% endif%}
+                  <div class="d-inline-flex p-2">
+  
+                    <li class="nav-item px-md-2 "><a class="nav-link text-nowrap" href="{% url 'change-pass'%}">change password</a></li>
+                  </div>
+                
+                  
+                 
+                  <div class="ml-auto user_title">
+                 
+             
+                    {% if user.is_staff%}
+                    
+                      
+                      <li class="nav-item d-inline-flex p-2 "><a class="nav-link text-nowrap" href="#">{{user.phone_number}}/</a><a class="nav-link text-nowrap" href="{% url 'logout'%}">LogOut</a></li>
+                  
+                    
+                    {% else %}
+                    
+      
+                      <li class="nav-item d-inline-flex p-2 "><a class="nav-link text-nowrap" href="#">{{user.company_name}} /</a><a class="nav-link text-nowrap"  href="{% url 'logout'%}">LogOut</a></li>
+                    
+    
+                    {% endif %}
+                
+                   
+    
+    
+                  
+    
+                    
+      
+      
+                  </div>
+  
+  
+               
+  
+             
+  
+                  
+                  
+                
+                
+                
+                 
+                  
+                  
+              
+                 
+                  
+                  
+                </div>
+               
+                
+  
+  
+              </div>
+      
+              
+  
+             
+       
+        </div>
+  
+      </div>
+  
+       
+  
+    </nav>
+    {% else %}
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
+     <div class="container">
+      <a class="navbar-brand" href="#">Navbar</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      
+  
+      <div class="collapse navbar-collapse " id="navbarSupportedContent">
+        
+            <div class="container  d-flex justify-content-start">
+              <div class="container navbar-nav d-flex justify-content-center">
+               
+              
+                <li class="nav-item px-md-2 "><a class="nav-link" href="">this</a></li>
+                <li class="nav-item px-md-2 "><a class="nav-link" href="">this</a></li>
+                <li class="nav-item px-md-2 "><a class="nav-link" href="">this</a></li>
+                <li class="nav-item px-md-2 "><a class="nav-link" href="">this</a></li>
+                <li class="nav-item px-md-2 "><a class="nav-link" href="">this</a></li>
+                <li class="nav-item px-md-2 "><a class="nav-link" href="">this</a></li>
+  
+               
+               
+              
+                
+            
+               
+                
+                
+              </div>
+              <div class="container d-flex justify-content-end">
+             
+            
+               
+  
+  
+               
+                <ul class="navbar-nav px-2 ">
+  
+                  <li class="nav-item  "><a class="nav-link btn btn-danger" href="{% url 'login'%}">login</a></li>
+                </ul>
+                <ul class="navbar-nav">
+  
+                  <li class="nav-item "><a class="nav-link btn btn-info" href="{% url 'signup'%}">Sign Up</a></li>
+                </ul>
+  
+                
+       
+  
+                
+  
+  
+              </div>
+              
+  
+  
+            </div>
+    
+            
+  
+           
+     
+      </div>
+     </div>
+  
+    
+      
+     
+    </nav>
+    {% endif %}
+
+    <div class="container-base">
+     <div class="sidebar collapse " id="sidebarContent">
+      <div class="container">
+        <p>this is a paragraph</p>
+      </div>
+      <div class="">
+        {% include 'asset/sidebar/sidebar.html'%}
+      </div>
+
+    
+
+     </div>
+     <div class="main-content">
+      {% block content%} 
+      <ul class="navbar-nav px-2 ">
+  
+        <li class="nav-item  "><a class="send-req nav-link btn btn-danger" href="">send request</a></li>
+      </ul>
+      {% endblock%}
+
+     </div>
+
+    </div>
+
+    
+
+
+        
+       
+   
+       
+         
+      
+
+        
+   
+
+
+
+  <script>
+  $(document).ready(function(){
+  
+
+    var winWidth=window.innerWidth
+    window.addEventListener('resize',function(){
+
+      if (window.innerWidth < 760){
+      
+      $('.user_title').removeClass('ml-auto')
+    }
+    else{
+      $('.user_title').addClass('ml-auto')
+
+    }
+    })
+
+    // $(".navbar-brand").on('click',function(){
+    //   $(".sidebar").toggleClass('collapse')
+      
+
+    // })
+
+   
+
+   
+  })
+  </script>
+  
+  <script>
+    $('.send-req').on('click',function(event){
+      event.preventDefault(); 
+    axios.get("{% url 'get_all'%}").then(function(response){
+      console.log(response.data.message)
+      console.log(response.status)
+      if (response.status===429){
+         return response.json()
+      }
+      return response.json()
+    }).catch(function(error){
+      if(error.response && error.response.status===429){
+        alert(error.response.data.message)
+      }
+    })
+    console.log("button clicked")
+   })
+  </script>
+     
+</body>
+</html>

@@ -1,0 +1,21 @@
+{% extends 'asset/base.html' %}
+
+{% block title%} reset complete {% endblock title %}
+
+{%block content%}
+<div class="container d-flex justify-content-center">
+
+    <div class="center card col-6 my-5">
+       <h5>Reset Complete</h5>
+
+       <div class="input-box alert alert-success">
+        Password successfully reset
+       </div>
+
+       <a class="btn btn-sm btn-success" href="{% url 'login' %}">login</a>
+
+       
+    </div>
+</div>
+
+{% endblock content%}

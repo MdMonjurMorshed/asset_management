@@ -1,0 +1,98 @@
+.dropdown-item:hover{
+    background: #dc3545;
+    color: white;
+}
+.nav-button{
+    position: absolute;
+    border: none;
+    border-radius:.25rem;
+}
+
+.nav-button::before{
+    font-family: "Font Awesome";
+    content:'\1F86B' ;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    right: 0;
+    top: 0;
+    position: absolute;
+    border-radius:.25rem;
+    height: 100%;
+    width: 0%;
+    transition:  .2s ease-in-out ;
+    font-size: 25px;
+    
+
+   
+    
+    
+
+}
+
+
+.nav-button:hover::before{
+    background: rgb(63, 60, 60) ;
+    width:  100%;
+    bottom: 0;
+   
+    
+   
+    
+  
+}
+@keyframes slide {
+0%{
+    transform: translateX(0%);
+}
+50%{
+    transform: translateX(50%);
+}
+100%{
+    transform: translateX(100%);
+}
+    
+}
+
+.container-base{
+    display: flex;
+}
+.sidebar {
+    width: 22vw;
+    position:absolute;
+  
+    left: -22vw;
+ 
+    height: 100vh;
+    background-color: #dc3545;
+    transition: transform 0.3s ease-in-out ;
+  }
+  
+  .sidebar.collapse {
+    transform: translateX(22vw);
+  }
+
+
+
+
+  
+
+
+
+.main-content{
+    flex-grow: 1;
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+

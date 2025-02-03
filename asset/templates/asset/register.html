@@ -1,0 +1,24 @@
+{% extends 'asset/base.html'%}
+
+{% block content%}
+
+
+
+<div class="container d-flex justify-content-center">
+
+    <div class="center card col-6 my-5">
+        <form class="p-3" method="POST" enctype="multipart/form-data">
+
+            {% csrf_token%}
+            {{form.as_p}}
+        
+         <button class=" form-control btn  btn-success" type="submit">register user</button>
+        </form>
+
+       
+    </div>
+</div>
+
+
+
+{%endblock%}
