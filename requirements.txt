@@ -9,6 +9,6 @@ pytz
 redis==5.0.1
 sentry-sdk==1.31.0
 sqlparse==0.4.4
-tzdata==2023.3
+tzdata
 urllib3==2.0.6
 
